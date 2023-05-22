@@ -37,6 +37,15 @@ Route::prefix('admin')->group(function () {
     Route::get('/books/{book}/edit', [BookController::class,'edit'])->name('book.edit');
     Route::patch('/books/{book}', [BookController::class,'update'])->name('book.update');
     Route::delete('/books/{book}', [BookController::class,'destroy'])->name('book.delete');
+    Route::post('/books/search', [BookController::class,'search'])->name('book.search');
+
+    Route::get('/users', [UserController::class,'index'])->name('user.index');
+    Route::get('/users/create', [UserController::class,'create'])->name('user.create');
+    Route::post('/users', [UserController::class,'store'])->name('user.store');
+    Route::get('/users/{user}', [UserController::class,'show'])->name('user.show');
+    Route::get('/users/{user}/edit', [UserController::class,'edit'])->name('user.edit');
+    Route::patch('/users/{user}', [UserController::class,'update'])->name('user.update');
+    Route::delete('/users/{user}', [UserController::class,'destroy'])->name('user.delete');
 });
 
 

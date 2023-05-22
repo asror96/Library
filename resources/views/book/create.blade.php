@@ -5,8 +5,10 @@
             @csrf
             <div class="form-group mb-3">
                 <label for="name" class="mb-2 d-flex justify-content-center"> Book name</label>
-                <input type="text" name="name" class="form-control mb-2" id="name" placeholder="Book name"/>
-
+                <input type="text" name="name" class="form-control mb-2 " id="name" placeholder="Book name" value="{{old('name')}}"/>
+                @error('name')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
                 <label class="mb-1" for="type">  Type of book </label>
                 <select class="form-select" aria-label="Default select example" id="type" name="type">
                     @foreach($types as $type)
@@ -23,9 +25,12 @@
                 <label class="mb-1" for="genre">  Genre of book </label>
                 <select multiple class="form-select" aria-label="Default select example" id="genre" name="genre_id[]" >
                     @foreach($genres as $genre)
-                    <option value="{{$genre->id}}">{{$genre->name}}</option>
+                    <option value="{{$genre->id}}" name="genre">{{$genre->name}}</option>
                     @endforeach
                 </select>
+                @error('genre')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
 
             <div class="text-center">

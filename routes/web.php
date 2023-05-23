@@ -1,9 +1,5 @@
 <?php
-
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\GenreController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,32 +16,35 @@ Route::get('/', function () {
 });
 
 Route::prefix('admin')->group(function () {
-    Route::get('', [UserController::class,'index'])->name('admin.index');
-
-    Route::get('/genres', [GenreController::class,'index'])->name('genre.index');
-    Route::get('/genres/create', [GenreController::class,'create'])->name('genre.create');
-    Route::post('/genres', [GenreController::class,'store'])->name('genre.store');
-    Route::get('/genres/{genre}', [GenreController::class,'show'])->name('genre.show');
-    Route::get('/genres/{genre}/edit', [GenreController::class,'edit'])->name('genre.edit');
-    Route::patch('/genres/{genre}', [GenreController::class,'update'])->name('genre.update');
-    Route::delete('/genres/{genre}', [GenreController::class,'destroy'])->name('genre.delete');
-
-    Route::get('/books', [BookController::class,'index'])->name('book.index');
-    Route::get('/books/create', [BookController::class,'create'])->name('book.create');
-    Route::post('/books', [BookController::class,'store'])->name('book.store');
-    Route::get('/books/{book}', [BookController::class,'show'])->name('book.show');
-    Route::get('/books/{book}/edit', [BookController::class,'edit'])->name('book.edit');
-    Route::patch('/books/{book}', [BookController::class,'update'])->name('book.update');
-    Route::delete('/books/{book}', [BookController::class,'destroy'])->name('book.delete');
-    Route::post('/books/search', [BookController::class,'search'])->name('book.search');
-
-    Route::get('/users', [UserController::class,'index'])->name('user.index');
-    Route::get('/users/create', [UserController::class,'create'])->name('user.create');
-    Route::post('/users', [UserController::class,'store'])->name('user.store');
-    Route::get('/users/{user}', [UserController::class,'show'])->name('user.show');
-    Route::get('/users/{user}/edit', [UserController::class,'edit'])->name('user.edit');
-    Route::patch('/users/{user}', [UserController::class,'update'])->name('user.update');
-    Route::delete('/users/{user}', [UserController::class,'destroy'])->name('user.delete');
+    Route::get('', [\App\Http\Controllers\User\IndexController::class,'__invoke'])->name('admin.index');
+    Route::prefix('/genres')->group(function (){
+        Route::get('', [\App\Http\Controllers\Genre\IndexController::class,'__invoke'])->name('genre.index');
+        Route::get('/create', [\App\Http\Controllers\Genre\CreateController::class,'__invoke'])->name('genre.create');
+        Route::post('', [\App\Http\Controllers\Genre\StoreController::class,'__invoke'])->name('genre.store');
+        Route::get('/{genre}', [\App\Http\Controllers\Genre\ShowController::class,'__invoke'])->name('genre.show');
+        Route::get('/{genre}/edit', [\App\Http\Controllers\Genre\EditController::class,'__invoke'])->name('genre.edit');
+        Route::patch('/{genre}', [\App\Http\Controllers\Genre\UpdateController::class,'__invoke'])->name('genre.update');
+        Route::delete('/{genre}', [\App\Http\Controllers\Genre\DestroyController::class,'__invoke'])->name('genre.delete');
+    });
+    Route::prefix('/books')->group(function (){
+        Route::get('', [\App\Http\Controllers\Book\IndexController::class,'__invoke'])->name('book.index');
+        Route::get('/create', [\App\Http\Controllers\Book\CreateController::class,'__invoke'])->name('book.create');
+        Route::post('', [\App\Http\Controllers\Book\StoreController::class,'__invoke'])->name('book.store');
+        Route::get('/{book}', [\App\Http\Controllers\Book\ShowController::class,'__invoke'])->name('book.show');
+        Route::get('/{book}/edit', [\App\Http\Controllers\Book\EditController::class,'__invoke'])->name('book.edit');
+        Route::patch('/{book}', [\App\Http\Controllers\Book\UpdateController::class,'__invoke'])->name('book.update');
+        Route::delete('/{book}', [\App\Http\Controllers\Book\DestroyController::class,'__invoke'])->name('book.delete');
+        Route::post('/search', [\App\Http\Controllers\Book\SearchController::class,'__invoke'])->name('book.search');
+    });
+    Route::prefix('/users')->group(function (){
+        Route::get('', [\App\Http\Controllers\User\IndexController::class,'__invoke'])->name('user.index');
+        Route::get('/create', [\App\Http\Controllers\User\CreateController::class,'__invoke'])->name('user.create');
+        Route::post('', [\App\Http\Controllers\User\StoreController::class,'__invoke'])->name('user.store');
+        Route::get('{user}', [\App\Http\Controllers\User\ShowController::class,'__invoke'])->name('user.show');
+        Route::get('/{user}/edit', [\App\Http\Controllers\User\EditController::class,'__invoke'])->name('user.edit');
+        Route::patch('{user}', [\App\Http\Controllers\User\UpdateController::class,'__invoke'])->name('user.update');
+        Route::delete('/{user}', [\App\Http\Controllers\User\DestroyController::class,'__invoke'])->name('user.delete');
+    });
 });
 
 

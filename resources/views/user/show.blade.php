@@ -12,7 +12,6 @@
             @method('delete')
             <input class="btn" style="text-decoration: none; color: white;background: #235754;" type="submit" value="Delete">
         </form>
-
     </div>
     <div >
         <a class="btn bg-dark" style="text-decoration: none; color: white" href="{{route('user.index')}}">Back</a>

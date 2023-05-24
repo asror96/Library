@@ -3,15 +3,16 @@
 namespace App\Models;
 
 use App\Enums\BookTypeEnum;
+use App\Models\Traits\Filterable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Book extends Model
 {
     use HasFactory;
-
+    use Filterable;
     protected $table = 'books';
-    protected $guarded=[];
+    protected $guarded=false;
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');

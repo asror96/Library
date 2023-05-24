@@ -24,10 +24,8 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=>'string',
-            'type'=>'string',
-            'user_id'=>'integer',
-            'genre_id'=>'required'
+            'genre_id'=>'integer',
+            'user_id'=>'integer'
         ];
     }
 }

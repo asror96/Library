@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="app.css">
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -11,25 +11,41 @@
 </head>
 <body style="background-color:#C5C6C7;">
 <div class="container">
-    <div class="row">
-        <nav class="navbar navbar-expand-lg navbar-light" style="font-size: large">
-            <div class="container-fluid">
-                <a class="navbar-brand" style="font-size: x-large" href="#">Admin</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav">
-                        <a class="nav-link change-color-link" aria-current="page" href="{{route('user.index')}}">Users</a>
-                        <a class="nav-link change-color-link" aria-current="page" href="{{route('book.index')}}">Books</a>
-                        <a class="nav-link change-color-link" aria-current="page" href="{{route('genre.index')}}">Genres</a>
-                    </div>
+    <div class="container-fluid" style="height: 75%;">
+        <div class="row flex-nowrap">
+            <div class="bg-dark col-auto col-md-3 min-vh-100">
+                <div class="bg-dark p-2">
+                    <a class="d-flex text-decoration-none align-items-center text-white mt-1">
+                        <span class="fs-3 d-none d-sm-inline">Admin panel</span>
+                    </a>
+                    <ul class="nav nav-pills flex-column mt-4">
+                        <li class="nav-item">
+                            <a href="{{route('user.index')}}" class="nav-link text-white" >
+                                &#9783; <span class="fs-5 d-none d-sm-inline">User</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('book.index')}}" class="nav-link text-white" >
+                                &#9783;<span class="fs-5 d-none d-sm-inline">Book</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{route('genre.index')}}" class="nav-link text-white" >
+                                &#9783;<span class="fs-5 d-none d-sm-inline">Genre</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </nav>
-        @yield('content')
+            <div style="margin-top: 3%;">
+                @yield('content')
+            </div>
+
+        </div>
     </div>
 </div>
+
+
 
 </body>
 </html>

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::prefix('admin')->group(function () {
+Route::group(['prefix'=>'admin'],function () {
     Route::get('', [\App\Http\Controllers\User\IndexController::class,'__invoke'])->name('admin.index');
     Route::prefix('/genres')->group(function (){
         Route::get('', [\App\Http\Controllers\Genre\IndexController::class,'__invoke'])->name('genre.index');

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Services\Book;
+use App\Http\Requests\Book\FilterRequest;
 use App\Models\Book;
 use App\Models\Book_Genre;
 use App\Models\Genre;
@@ -23,24 +24,21 @@ class Service
         }
         return $genre_array;
     }
-    public function index(){
-        $books=Book::all()->sortBy('name');
-        foreach ($books as $book){
-            $book->user_name=(User::where('id',$book->user_id)->get())[0]->name;
-            $genre_ides=Book_Genre::where('book_id',$book->id)->get('genre_id');
-            $index=0;
-            foreach ($genre_ides as $genre_id){
-                $genre_name[$index]=(Genre::where('id',$genre_id->genre_id)->get())[0]->name;
+    public function index($books){
+        foreach ($books as $book) {
+            $book->user_name = (User::where('id', $book->user_id)->get())[0]->name;
+            $genre_ides = Book_Genre::where('book_id', $book->id)->get('genre_id');
+            $index = 0;
+            foreach ($genre_ides as $genre_id) {
+                $genre_name[$index] = (Genre::where('id', $genre_id->genre_id)->get())[0]->name;
                 $index++;
             }
-            $book->genres=$genre_name;
+            $book->genres = $genre_name;
         }
-
         return $books;
     }
-    public function search($data){
-        $key=$data["search_book"];
-        $books=Book::where('name','LIKE',"%$key%")->get();
+    public function search($books){
+
         foreach ($books as $book){
             $book->user_name=(User::where('id',$book->user_id)->get())[0]->name;
             $genre_ides=Book_Genre::where('book_id',$book->id)->get('genre_id');

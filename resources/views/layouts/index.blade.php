@@ -34,6 +34,16 @@
                                 &#9783;<span class="fs-5 d-none d-sm-inline">Genre</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <form method="POST" action="{{ route('logout') }}">
+                                @csrf
+                                <button type="submit" class="nav-link text-white" >
+                                    &#9783;<span class="fs-5 d-none d-sm-inline">Logout</span>
+                                </button>
+                            </form>
+                        </li>
+
+
                     </ul>
                 </div>
             </div>

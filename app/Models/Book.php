@@ -12,7 +12,7 @@ class Book extends Model
     use HasFactory;
     use Filterable;
     protected $table = 'books';
-    protected $guarded=false;
+    protected $guarded=[];
     public function user()
     {
         return $this->belongsTo(User::class,'user_id','id');

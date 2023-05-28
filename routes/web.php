@@ -49,6 +49,7 @@ Route::middleware(['auth','admin'])->prefix('admin')->group(function () {
         Route::post('/search', [\App\Http\Controllers\Book\SearchController::class,'__invoke'])->name('book.search');
     });
     Route::prefix('/users')->group(function (){
+
         Route::get('', [\App\Http\Controllers\User\IndexController::class,'__invoke'])->name('user.index');
         Route::get('/create', [\App\Http\Controllers\User\CreateController::class,'__invoke'])->name('user.create');
         Route::post('', [\App\Http\Controllers\User\StoreController::class,'__invoke'])->name('user.store');

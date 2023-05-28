@@ -13,10 +13,12 @@ return [
     |
     */
 
-    'defaults' => [
-        'guard' => 'web',
+    'defaults' =>
+    [
+        'guard' => 'api',
         'passwords' => 'users',
     ],
+
 
     /*
     |--------------------------------------------------------------------------
@@ -38,6 +40,10 @@ return [
     'guards' => [
         'web' => [
             'driver' => 'session',
+            'provider' => 'users',
+        ],
+        'api' => [
+            'driver' => 'jwt',
             'provider' => 'users',
         ],
     ],
@@ -77,7 +83,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | You may specify multiple password reset configurations if you have more
-    | than one user table or model in the application and you want to have
+    | than one user table or model in the applicationё and you want to have
     | separate password reset settings based on the specific user types.
     |
     | The expire time is the number of minutes that each reset token will be
